@@ -39,7 +39,8 @@ class ContactController extends FOSRestController
 
         return $response;
 
-    }
+    } // "get_contact"   [GET] /contacts/{id}
+
     protected function getOr404($id)
     {
         if (!($contact = $this->container->get('doctrine.orm.entity_manager')->getRepository('apicarnetBundle:Contact')->find($id)  )) {

@@ -5,3 +5,8 @@ apicarnet:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+contacts:
+    type:     rest
+    prefix: /api
+    resource: "@apicarnetBundle/Resources/config/routes.yml"
