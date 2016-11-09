@@ -10,11 +10,17 @@ namespace apicarnetBundle\Controller;
 
 
 use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class ContactController extends FOSRestController
 {
     public function getContactAction($id)
     {
-        return $this->container->get('doctrine.orm.entity_manager')->getRepository('Contact')->find($id);
+
+        $contact= $this->container->get('doctrine.orm.entity_manager')->getRepository('apicarnetBundle:Contact')->find($id);
+        $response=new Response($contact->getCivilite(),'200');
+        return $response;
+
     }
 }
