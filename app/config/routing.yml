@@ -1,3 +1,7 @@
+apicarnet:
+    type: rest
+    prefix: /api
+    resource: "@apicarnetBundle/Resources/config/routes.yml"
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
