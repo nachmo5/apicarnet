@@ -8,12 +8,21 @@
 
 namespace apicarnetBundle\Controller;
 
+use apicarnetBundle\Form\AdresseType;
 use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use apicarnetBundle\Entity\Adresse;
 class AdresseController extends FOSRestController
 {
+
+    public function postAdresseAction($id,Request $request)
+    {
+        $response=new Response('test');
+
+        return $response;
+    }
 
     public function getAdresseAction($id,$slug)
     {
