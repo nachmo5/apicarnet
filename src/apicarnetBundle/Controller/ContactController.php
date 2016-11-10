@@ -19,18 +19,35 @@ use apicarnetBundle\Entity\Contact;
 class ContactController extends FOSRestController
 {
 
+    public function putContactAction($id,Request $request){
+
+        $body=$request->getContent();
+        $data=json_decode($body,true);
+        $contact = $this->container->get('doctrine.orm.entity_manager')->getRepository('apicarnetBundle:Contact')->find($id);
+        $form=$this->createForm(new ContactType(),$contact);
+        $form->submit($data);
+
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($contact);
+        $em->flush();
+
+        $response=new Response($body,200);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
     public function deleteContactAction($id)
     {
 
-        if (!($adresses = $this->container->get('doctrine.orm.entity_manager')->getRepository('apicarnetBundle:Adresse')->findBy(array('contact' => $id)) )) {
-            throw new NotFoundHttpException(sprintf('Ressource \'%s\' introuvable.',$id));
-        }
+        if (($adresses = $this->container->get('doctrine.orm.entity_manager')->getRepository('apicarnetBundle:Adresse')->findBy(array('contact' => $id)) )) {
+
         foreach ($adresses as $adresse) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($adresse);
             $em->flush();
+            }
         }
-
         if ($contact = $this->container->get('doctrine.orm.entity_manager')->getRepository('apicarnetBundle:Contact')->find($id)) {
 
             $em = $this->getDoctrine()->getManager();

@@ -19,6 +19,18 @@ use apicarnetBundle\Entity\Adresse;
 class AdresseController extends FOSRestController
 {
 
+    public function putAdresseAction($id,$slug){
+
+        if ($adresse = $this->container->get('doctrine.orm.entity_manager')->getRepository('apicarnetBundle:Adresse')->find($slug)) {
+
+            $em = $this->getDoctrine()->getManager();
+
+        }
+
+
+        return new Response(null, 204);
+    }
+
     public function deleteAdresseAction($id,$slug)
     {
         if ($adresse = $this->container->get('doctrine.orm.entity_manager')->getRepository('apicarnetBundle:Adresse')->find($slug)) {

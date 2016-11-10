@@ -51,6 +51,23 @@ class ContactControllerTest extends WebTestCase
 
 
     }
+    public function testPUT()
+    {
+        $client   = static::createClient();
+        $crawler  = $client->request("PUT","/api/v1/contacts/4", array(),  array(),
+            array('CONTENT_TYPE' => 'application/json'),
+            '{"civilite":"Monsieur","nom":"Nachit","prenom":"Med","date_de_naissance":null,"cree_le":null,"misajour_le":null}'
+
+        );
+
+        $response = $client->getResponse();
+        $finishedData = json_decode($response->getContent(),true);
+
+
+
+
+
+    }
     public function testDELETE()
     {
         $client   = static::createClient();
