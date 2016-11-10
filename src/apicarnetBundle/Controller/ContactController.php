@@ -19,6 +19,31 @@ use apicarnetBundle\Entity\Contact;
 class ContactController extends FOSRestController
 {
 
+    public function deleteContactAction($id)
+    {
+
+        if (!($adresses = $this->container->get('doctrine.orm.entity_manager')->getRepository('apicarnetBundle:Adresse')->findBy(array('contact' => $id)) )) {
+            throw new NotFoundHttpException(sprintf('Ressource \'%s\' introuvable.',$id));
+        }
+        foreach ($adresses as $adresse) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($adresse);
+            $em->flush();
+        }
+
+        if ($contact = $this->container->get('doctrine.orm.entity_manager')->getRepository('apicarnetBundle:Contact')->find($id)) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($contact);
+            $em->flush();
+        }
+
+
+        return new Response(null, 204);
+
+    }
+
+
     public function postContactAction(Request $request)
     {
         $body=$request->getContent();
@@ -33,7 +58,7 @@ class ContactController extends FOSRestController
 
         $response=new Response($body,201);
         $response->headers->set('Content-Type', 'application/json');
-        $programmerUrl =  $this->generateUrl('api_1_post_contact', array('id' => $contact->getId(), '_format' => 'json'));
+        $programmerUrl =  $this->generateUrl('api_1_get_contact', array('id' => $contact->getId(), '_format' => 'json'));
         $response->headers->set('Location', $programmerUrl);
 
         return $response;

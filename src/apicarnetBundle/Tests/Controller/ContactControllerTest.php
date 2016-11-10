@@ -51,5 +51,16 @@ class ContactControllerTest extends WebTestCase
 
 
     }
+    public function testDELETE()
+    {
+        $client   = static::createClient();
+        $crawler  = $client->request("DELETE","/api/v1/contacts/1", array(),  array(), array( 'CONTENT_TYPE' => 'application/json'));
+
+        $response = $client->getResponse();
+
+        $this->assertEquals(204, $response->getStatusCode());
+
+
+    }
 
 }
