@@ -13,3 +13,10 @@ app/console doctrine:schema:update --force
 
 Routes
 ![Alt text](/images/routes.PNG?raw=true "Optional Title")
+
+
+
+Header Authorization pour l'authentification ( jeton via requête POST )
+
+
+
