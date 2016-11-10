@@ -9,13 +9,38 @@
 namespace apicarnetBundle\Controller;
 
 
+use apicarnetBundle\Form\ContactType;
 use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use apicarnetBundle\Entity\Contact;
 
 class ContactController extends FOSRestController
 {
+
+    public function postContactAction(Request $request)
+    {
+        $body=$request->getContent();
+        $data=json_decode($body,true);
+        $contact=new Contact();
+        $form=$this->createForm(new ContactType(),$contact);
+        $form->submit($data);
+
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($contact);
+        $em->flush();
+
+        $response=new Response($body,201);
+        $response->headers->set('Content-Type', 'application/json');
+        $programmerUrl =  $this->generateUrl('api_1_post_contact', array('id' => $contact->getId(), '_format' => 'json'));
+        $response->headers->set('Location', $programmerUrl);
+
+        return $response;
+
+    }
+
+
 
     public function getContactsAction()
     {
