@@ -15,7 +15,7 @@ class AdresseControllerTest extends WebTestCase
     public function testGETAdresse()
     {
         $client   = static::createClient();
-        $crawler  = $client->request("GET","/api/v1/contacts/1/adresses", array(),  array(), array( 'CONTENT_TYPE' => 'application/json'));
+        $crawler  = $client->request("GET","/api/v1/contacts/2/adresses", array(),  array(), array( 'CONTENT_TYPE' => 'application/json'));
 
         $response = $client->getResponse();
 
@@ -44,7 +44,7 @@ class AdresseControllerTest extends WebTestCase
     public function testDELETE()
     {
         $client   = static::createClient();
-        $crawler  = $client->request("DELETE","/api/v1/contacts/1/adresses/3", array(),  array(), array( 'CONTENT_TYPE' => 'application/json'));
+        $crawler  = $client->request("DELETE","/api/v1/contacts/3", array(),  array(), array( 'CONTENT_TYPE' => 'application/json'));
 
         $response = $client->getResponse();
 

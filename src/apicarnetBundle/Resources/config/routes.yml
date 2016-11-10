@@ -9,3 +9,9 @@ adresses:
     parent:   contacts
     resource: '@apicarnetBundle/Controller/AdresseController.php'
     name_prefix:  api_1_ # naming collision
+
+tokens:
+    type: rest
+    prefix: /v1
+    resource: '@apicarnetBundle/Controller/TokenController.php'
+    name_prefix:  api_1_ # naming collision

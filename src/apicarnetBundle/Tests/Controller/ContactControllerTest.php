@@ -53,6 +53,7 @@ class ContactControllerTest extends WebTestCase
     }
     public function testPUT()
     {
+
         $client   = static::createClient();
         $crawler  = $client->request("PUT","/api/v1/contacts/4", array(),  array(),
             array('CONTENT_TYPE' => 'application/json'),

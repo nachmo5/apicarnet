@@ -8,7 +8,7 @@
 
 namespace apicarnetBundle\Controller;
 
-
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use apicarnetBundle\Form\ContactType;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;

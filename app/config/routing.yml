@@ -10,3 +10,7 @@ contacts:
     type:     rest
     prefix: /api
     resource: "@apicarnetBundle/Resources/config/routes.yml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
