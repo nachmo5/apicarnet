@@ -19,4 +19,10 @@ Routes
 Header Authorization pour l'authentification ( jeton via requête POST )
 
 
+Tests:
 
+phunit -c app src/apicarnetBundle/Tests/Controller/ContactControllerTest.php 
+
+phunit -c app src/apicarnetBundle/Tests/Controller/AdresseControllerTest.php 
+
+phunit -c app src/apicarnetBundle/Tests/Controller/TokenControllerTest.php 
